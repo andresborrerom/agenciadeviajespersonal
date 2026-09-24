@@ -1,0 +1,52 @@
+# Perfil de viajeros — NUNCA agregar aquí datos de pago (tarjetas, CVV,
+# contraseñas, documentos de identidad). Solo preferencias y programas de
+# lealtad (no son medios de pago).
+
+hogar:
+  ciudad_base: "Ciudad de Panamá"
+  aeropuerto_base: "PTY"
+  moneda_referencia: "USD"
+  destinos_frecuentes:
+    - "Colombia"
+    - "España"
+    - "Estados Unidos"
+
+viajeros:
+  - rol: "titular"
+    nombre: null # completar
+    programas_lealtad: [] # ej. aerolínea/hotel/rentadora, solo número de membresía
+  - rol: "esposa"
+    nombre: null
+    programas_lealtad: []
+  - rol: "hija"
+    nombre: null
+    universidad: "Cornell University"
+    ciudad_universidad: "Ithaca, NY"
+    programas_lealtad: []
+  - rol: "hijo"
+    nombre: null
+    programas_lealtad: []
+
+preferencias:
+  hoteles:
+    categoria_minima: "4 estrellas o boutique equivalente"
+    reviews_minimos:
+      booking: 8.4
+      google:
+        rating: 4.2
+        min_resenas: 1000
+    zona: "segura y caminable"
+    habitacion_madre_hija: "2 camas (queen o double)"
+    preferencia_cancelacion: "cancelación gratis si la diferencia de precio es menor al 10%"
+  vuelos:
+    preferencia_general: "por definir (aerolíneas preferidas, clase, escalas máximas)"
+  carros:
+    preferencia_general: "por definir"
+  golf:
+    fuentes_preferidas:
+      - "GolfNow"
+      - "Chronogolf"
+      - "sitios oficiales de club"
+
+notas:
+  - "Este archivo se versiona en git. No agregar nunca información de pago aquí."
