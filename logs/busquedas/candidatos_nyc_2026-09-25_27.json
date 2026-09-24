@@ -1,0 +1,71 @@
+{
+  "_nota": "Datos crudos usados por scripts/scoring_hoteles.py para el pedido de hotel en NYC, checkin 2026-09-25 / checkout 2026-09-27. Precios reportados por el usuario (no verificados en vivo, ver logs/busquedas/2026-09-24.jsonl). Distancias calculadas con scripts/distancia_a_punto.py contra el poligono real de Central Park.",
+  "_presupuesto": {"ideal": 350, "techo": 750},
+  "hoteles": [
+    {
+      "nombre": "Hotel Belleclaire",
+      "zona": "Upper West Side",
+      "reviews_raw": 8.45,
+      "reviews_n": 4923,
+      "distancia_caminando_m": 949,
+      "precio": 705,
+      "categoria": 0.85,
+      "camas": 0.5,
+      "cancelacion": 0.5,
+      "zona_seguridad": 1.0,
+      "notas": "Camas sin confirmar en pantalla; desayuno incluido segun el usuario."
+    },
+    {
+      "nombre": "The Lucerne",
+      "zona": "Upper West Side",
+      "reviews_raw": 8.4,
+      "reviews_n": 500,
+      "distancia_caminando_m": 759,
+      "precio": 722,
+      "categoria": 0.85,
+      "camas": 0.5,
+      "cancelacion": 0.5,
+      "zona_seguridad": 1.0,
+      "notas": "Existe categoria Deluxe Queen-Queen (2 camas) pero el usuario vio solo 1 cama disponible para estas fechas; conteo de reseñas asumido conservador por falta de dato exacto."
+    },
+    {
+      "nombre": "Hotel Beacon",
+      "zona": "Upper West Side",
+      "reviews_raw": 8.8,
+      "reviews_n": 2947,
+      "distancia_caminando_m": 785,
+      "precio": 900,
+      "categoria": 0.85,
+      "camas": 1.0,
+      "cancelacion": 0.5,
+      "zona_seguridad": 1.0,
+      "notas": "Categorias de cuarto confirmadas con 2 Double Beds; precio sobre el techo de $750."
+    },
+    {
+      "nombre": "Riverside Tower Hotel",
+      "zona": "Upper West Side",
+      "reviews_raw": 7.8,
+      "reviews_n": 200,
+      "distancia_caminando_m": 1227,
+      "precio": 830,
+      "categoria": 0.35,
+      "camas": 0.7,
+      "cancelacion": 0.5,
+      "zona_seguridad": 1.0,
+      "notas": "IMPORTANTE: catalogado como 'tourist class' / 2 estrellas en varias fuentes pese al buen score de reviews; rating de 8.6 (usuario) vs 7.0 (Expedia/Hotels.com) — se promedio por la discrepancia y se bajo el n por baja confianza. No cumple realmente el minimo de categoria de 4 estrellas."
+    },
+    {
+      "nombre": "The Shoreham",
+      "zona": "Midtown West (cerca Carnegie Hall)",
+      "reviews_raw": 7.3,
+      "reviews_n": 1619,
+      "distancia_caminando_m": 425,
+      "precio": null,
+      "categoria": 0.85,
+      "camas": 1.0,
+      "cancelacion": 0.5,
+      "zona_seguridad": 1.0,
+      "notas": "Precio para estas fechas no disponible via busqueda (no hay navegador real conectado); requiere verificacion directa antes de poder rankear con score completo."
+    }
+  ]
+}

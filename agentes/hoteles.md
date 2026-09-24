@@ -21,3 +21,10 @@ sobreescribibles por pedido):**
 precio/noche con impuestos, total, política de cancelación, sitio con
 mejor precio y link directo con fechas precargadas — antes de pasar por
 el agente verificador.
+
+**Rating general:** cada candidato que pasa el filtro duro se califica con
+el modelo ponderado de `agentes/scoring.md` (reviews con ajuste bayesiano,
+distancia real por polígono, precio, categoría, camas, cancelación, zona).
+Pesos configurables en `perfil/viajeros.yaml` →
+`preferencias.hoteles.pesos_scoring`. Script: `scripts/scoring_hoteles.py`.
+Distancia calculada con `scripts/distancia_a_punto.py`.
