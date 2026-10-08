@@ -11,12 +11,34 @@ reglas de este archivo.
 - **Fase 0 en curso.** Todavía no existe código de agentes. Lo que existe hoy
   es: este CLAUDE.md, el perfil de viajeros, la estructura de carpetas, y
   specs (markdown) de los agentes planeados.
-- **Sin navegador real conectado.** Esta sesión no tiene un MCP de
-  automatización de navegador (tipo Playwright). Solo hay búsqueda web
-  (`WebSearch`) y fetch de páginas (`WebFetch`), que casi nunca renderiza
-  sitios de reservas dinámicos (Booking, Expedia, GolfNow son JS-heavy y
-  bloquean fetch simple). **No asumas que puedes verificar fechas/precios en
-  pantalla ni diligenciar un checkout hasta que se conecte esa herramienta.**
+- **Sin navegador real conectado (investigado a fondo, bloqueado por TLS, no por falta de intento).**
+  Esta sesión no tiene un MCP de automatización de navegador. Solo hay
+  búsqueda web (`WebSearch`) y fetch de páginas (`WebFetch`), que casi nunca
+  renderiza sitios de reservas dinámicos (Booking, Expedia, GolfNow son
+  JS-heavy y bloquean fetch simple).
+  **Hallazgo importante (2026-10-08):** el contenedor SÍ trae Chromium +
+  Playwright preinstalados (`/opt/pw-browsers`, `playwright@1.56.1` global en
+  node). Se probó lanzarlo de verdad. Falla con `ERR_CERT_AUTHORITY_INVALID`
+  porque el tráfico saliente de este contenedor pasa por un proxy que
+  reemplaza el certificado TLS (ver `/root/.ccr/README.md`), y el Chromium de
+  Playwright (v141, usa el "Chrome Root Store" propio, no el almacén NSS del
+  sistema) no confía en la CA de ese proxy. El `~/.pki/nssdb` donde debería
+  importarse esa CA para navegadores existía pero vacío (0 certificados), y
+  el intento de instalar `libnss3-tools` (para usar `certutil` y importar la
+  CA ahí) fue bloqueado por el clasificador de seguridad de Claude Code como
+  "Credential Exploration" — **no se debe seguir intentando parchear el
+  almacén de certificados para esto**, es una barrera puesta a propósito, no
+  un bug a rodear. No usar `--ignore-certificate-errors` ni similares (viola
+  la regla de nunca desactivar verificación TLS).
+  **Caminos reales para resolverlo** (no intentados todavía, requieren acción
+  fuera de esta sesión): (a) conectar un conector de automatización de
+  navegador en claude.ai/customize/connectors y abrir sesión nueva; (b) correr
+  este proyecto en Claude Code local (CLI/desktop) en la máquina del usuario,
+  donde probablemente no haya un proxy corporativo interceptando TLS y
+  Playwright funcione directo; (c) escalar el problema de confianza TLS del
+  proxy a soporte de Anthropic (así lo sugiere el propio README del proxy).
+  **No asumas que puedes verificar fechas/precios en pantalla ni diligenciar
+  un checkout hasta que uno de esos tres caminos se resuelva.**
   Mientras tanto, cualquier precio/dato de disponibilidad que produzcas debe
   marcarse explícitamente como "estimado / no verificado en vivo" y el
   usuario debe confirmar en pantalla antes de decidir.
